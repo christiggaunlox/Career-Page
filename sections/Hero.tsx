@@ -16,15 +16,15 @@ const Hero = () => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isSnapping, setIsSnapping] = useState(false);
-    
+
     const [visibleItems, setVisibleItems] = useState(3);
 
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth < 768) {
-                setVisibleItems(1); 
+                setVisibleItems(1);
             } else {
-                setVisibleItems(3); 
+                setVisibleItems(3);
             }
         };
 
@@ -45,7 +45,7 @@ const Hero = () => {
                 setIsSnapping(false);
                 setCurrentIndex((prev) => prev + 1);
             }
-        }, 2500); 
+        }, 2500);
 
         return () => clearInterval(interval);
     }, [currentIndex, imageList.length]);
@@ -56,7 +56,7 @@ const Hero = () => {
             const timer = setTimeout(() => {
                 setIsSnapping(false);
                 setCurrentIndex(1);
-            }, 20); 
+            }, 20);
             return () => clearTimeout(timer);
         }
     }, [isSnapping]);
@@ -64,7 +64,7 @@ const Hero = () => {
     return (
         <section className="relative overflow-hidden bg-white font-sans w-full min-h-screen flex flex-col pt-10 md:pt-0">
             {/* Curve Arc */}
-            <div className="absolute top-0 left-0 w-full h-40 overflow-hidden bg-transparent pointer-events-none opacity-0 md:opacity-100">
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden bg-transparent pointer-events-none opacity-0 md:opacity-100">
                 <div
                     className="
                         absolute left-1/2 -translate-x-1/2
@@ -76,13 +76,24 @@ const Hero = () => {
                         [-webkit-mask-image:linear-gradient(to_right,transparent_0%,transparent_15%,black_30%,black_70%,transparent_85%,transparent_100%)]
                     "
                 />
+                <div
+                    className="
+                        absolute left-1/2 -translate-x-1/2
+                        top-[-60px] md:top-[-340px]
+                        w-[140%] md:w-[60%] h-[200px] md:h-[500px]
+                        rounded-[100%]
+                        bg-transparent
+                        blur-xs
+                        shadow-[0_0_200px_#D0E5FF,inset_0_0_50px_#D0E5FF]
+                        "
+                />
             </div>
 
             {/* Header Text */}
-            <div className="relative z-10 max-w-7xl mx-auto px-6 text-center mt-12 md:mt-20 mb-10">
+            <div className="relative max-w-7xl mx-auto px-6 text-center mt-12 md:mt-20 mb-10">
                 <div className="mb-10 md:mb-16">
-                    <h1 className="text-4xl md:text-7xl font-sans font-semibold text-[#00284D] mb-6 tracking-tight">
-                        Where Talent <br className="hidden md:block"/> Feels at home.
+                    <h1 className="text-4xl md:text-7xl font-sans font-semibold text-[#00284D] mb-6 tracking-tight bg-transparent">
+                        Where Talent <br/> Feels at home.
                     </h1>
                     <p className="max-w-4xl mx-auto text-[#516C86] text-lg md:text-xl leading-relaxed">
                         Life at Unlox blends purpose and passion, where collaboration feels natural and every day moves us closer to creating meaningful impact for millions of students across India.
